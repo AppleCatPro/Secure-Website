@@ -1,0 +1,178 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Register</title>#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'home.html' %}#}
+{#{% load static %}#}
+{#{% block content %}#}
+{#    <h1>Register</h1>#}
+{##}
+{#    {% if messages %}#}
+{#        <ul class="messages">#}
+{#            {% for message in messages %}#}
+{#                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{##}
+{#    <form method="post" action="{% url 'register' %}">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Register</button>#}
+{#    </form>#}
+{#{% endblock %}#}
+{##}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Arial", sans-serif;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        form p {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .messages li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .error {
+            color: #ff0000;
+        }
+
+        .success {
+            color: #00ff00;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 70px;
+            margin-top: 60px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+    {#    <h1>Register</h1>#}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container">
+        <h1>Регистрация</h1>
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <p>
+                <label for="id_username">Username:</label><br>
+                {{ form.username }}
+            </p>
+            <p>
+                <label for="id_firstname">Имя:</label><br>
+                {{ form.first_name }}
+            </p>
+            <p>
+                <label for="id_lastname">Фамилия:</label><br>
+                {{ form.last_name }}
+            </p> </p>
+            <p>
+                <label for="id_date_of_birth">День рождения:</label><br>
+                {{ form.date_of_birth }}
+            </p>
+            <p>
+                <label for="id_email">Email:</label><br>
+                {{ form.email }}
+            </p>
+            <p>
+                <label for="id_gender">Гендер:</label><br>
+                {{ form.gender }}
+            </p>
+            <p>
+                <label for="id_is_verified">Верификация :</label><br>
+                {{ form.is_verified }}
+            </p>
+            <p>
+                <label for="id_password1">Пароль:</label><br>
+                {{ form.password1 }}
+            </p>
+            <p>
+                <label for="id_password2">Подтверждение пароля:</label><br>
+                {{ form.password2 }}
+            </p>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+</body>
+</html>

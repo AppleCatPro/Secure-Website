@@ -1,0 +1,118 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Login</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Login</h1>#}
+{##}
+{#    {% if messages %}#}
+{#    <ul class="messages">#}
+{#        {% for message in messages %}#}
+{#        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#    {% endif %}#}
+{##}
+{#    <form method="post" action="{% url 'login' %}">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Login</button>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Arial", sans-serif;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .messages li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .error {
+            color: #ff0000;
+        }
+
+        .login-form {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .login-form button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-form button[type="submit"]:hover {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body>
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <h1>Авторизация</h1>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="login-form">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username"><br>
+            <input type="password" name="password" placeholder="Password"><br>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Arial", sans-serif;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 50px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #222;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        td {
+            background-color: #444;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        .edit-button {
+            padding: 5px 10px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit-button:hover {
+            background-color: #444;
+        }
+
+    </style>
+</head>
+<body>
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <br>
+    <h1>Добро пожаловать на Dashboard</h1>
+
+    <h2>Confidential Data</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>CD</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Is Encrypted</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in confidential_data %}
+            <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data }}</td>
+                {% if data.encryption_key != user.encryption_key %}
+                    <td>-</td>
+                    <td>***</td>
+                {% else %}
+                    <td>{{ data.title }}</td>
+                    {#                    <td>{{ data.description }}</td>#}
+                    <td>****</td>
+                {% endif %}
+                <td>{{ data.is_encrypted }}</td>
+                <td>
+                    <form method="GET" action="{% url 'view_data' data_id=data.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button class="edit-button">Просмотр</button>
+                    </form>
+                    <form method="GET" action="{% url 'edit_data' data_id=data.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button class="edit-button">Изменить</button>
+                    </form>
+                    <form method="GET" action="{% url 'delete_data' data_id=data.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button class="edit-button">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <script>
+        function editData(id) {
+            console.log("Editing data with ID:", id);
+        }
+    </script>
+{% endblock %}
+</body>
+</html>

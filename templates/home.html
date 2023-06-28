@@ -1,0 +1,141 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Home</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Welcome to the Home Page</h1>#}
+{##}
+{#    <p>This is the home page of the secure data management web application.</p>#}
+{##}
+{#    <h2>Features</h2>#}
+{#    <ul>#}
+{#        <li>Secure storage of confidential data</li>#}
+{#        <li>User authentication and authorization</li>#}
+{#        <li>Data encryption and secure transmission</li>#}
+{#        <li>Protection against common web application attacks</li>#}
+{#        <li>Audit and logging system</li>#}
+{#        <li>Automatic updates and security patches</li>#}
+{#        <li>Security testing and vulnerability fixes</li>#}
+{#    </ul>#}
+{##}
+{#    <p>Start using the application by <a href="/login/">logging in</a>.</p>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #222;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        p {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #444;
+        }
+
+        footer {
+            background-color: #222;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Secure Website</h1>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'add_data' %}">Добавить запись</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">Личный кабинет</a>
+            <a href="{% url 'logout' %}">Выйти</a>
+        {% else %}
+            <a href="{% url 'login' %}">Войти</a>
+            <a href="{% url 'register' %}">Регистрация</a>
+        {% endif %}
+    </nav>
+</header>
+{% block content %}
+
+    <h2>Добро пожаловать {{ user.username }} на Home Page</h2>
+    <p>Это домашняя страница нашего веб-сайта.</p>
+    <br>
+    <br>
+
+    <div class="button-container">
+        <a href='{% url 'dashboard' %}' class="button">Перейти в Dashboard</a>
+    </div>
+
+
+{% endblock %}
+<footer>
+    <p>Developed by Ilya Kharchenko &copy; 2023. Все права защищены.</p>
+</footer>
+</body>
+</html>

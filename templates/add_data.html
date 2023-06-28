@@ -1,0 +1,146 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Add Data</title>#}
+{#    <style>#}
+{#        body {#}
+{#            background-color: #000;#}
+{#            color: #fff;#}
+{#            font-family: "Arial", sans-serif;#}
+{#        }#}
+{##}
+{#        h2 {#}
+{#            font-size: 24px;#}
+{#            text-align: center;#}
+{#            margin-top: 50px;#}
+{#        }#}
+{##}
+{#        form {#}
+{#            margin-top: 30px;#}
+{#            text-align: center;#}
+{#        }#}
+{##}
+{#        form p {#}
+{#            margin-bottom: 10px;#}
+{#        }#}
+{##}
+{#        input[type="text"], input[type="password"] {#}
+{#            padding: 5px;#}
+{#            width: 200px;#}
+{#        }#}
+{##}
+{#        button {#}
+{#            padding: 10px 20px;#}
+{#            background-color: #222;#}
+{#            color: #fff;#}
+{#            border: none;#}
+{#            cursor: pointer;#}
+{#        }#}
+{##}
+{#        button:hover {#}
+{#            background-color: #444;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#{% extends 'home.html' %}#}
+{#{% load static %}#}
+{#{% block content %}#}
+{##}
+{#    <h2>Добавление защищенной записи</h2>#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Добавить</button>#}
+{#    </form>#}
+{##}
+{#{% endblock %}#}
+{##}
+{#</body>#}
+{#</html>#}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Data</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Arial", sans-serif;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 70px;
+            margin-top: 60px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        form p {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], textarea {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: none;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <h2>Добавление Confidential Data</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <input type="text" name="title" placeholder="Заголовок" required>
+            </p>
+            <p>
+                <textarea name="description" rows="5" placeholder="Описание" required></textarea>
+            </p>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+</body>
+</html>
